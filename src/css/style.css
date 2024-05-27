@@ -1,0 +1,30 @@
+@import 'fonts.css';
+@import '~normalize.css';
+
+body {
+  font-family: "Sevillana", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  color: red;
+  font-family: "Roboto";
+}
+
+.container {
+  padding: 20px 40px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  background-image: url("../assets/icon-square-big.png");
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  margin: 0 auto;
+}
