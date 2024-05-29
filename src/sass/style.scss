@@ -1,0 +1,14 @@
+$border: 2px solid #000;
+$gap: 5px;
+
+
+.scss-demo {
+  margin-top: 20px;
+  padding: $gap;
+  border-top: $border;
+
+  h2 {
+    color: #f80202;
+    text-align: center;
+  }
+}

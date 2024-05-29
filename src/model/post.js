@@ -1,3 +1,6 @@
+let unused = 'unused'
+console.log(unused)
+
 export default class Post {
   constructor(title, img) {
     this.title = title
@@ -7,9 +10,9 @@ export default class Post {
 
   toString() {
     return JSON.stringify({
-      title: this.title,
       date: this.date.toJSON(),
-      img: this.img
+      img: this.img,
+      title: this.title
     }, null, 2)
   }
 }
