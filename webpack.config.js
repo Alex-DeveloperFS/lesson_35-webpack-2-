@@ -1,11 +1,11 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin' )
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin' )
-const TerserWebpackPlugin = require('terser-webpack-plugin' )
-const EslintWebpackPlugin = require('eslint-webpack-plugin' )
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
+const EslintWebpackPlugin = require('eslint-webpack-plugin')
 
 const IS_DEV = process.env.NODE_ENV === 'development'
 const IS_PROD = !IS_DEV
@@ -15,9 +15,7 @@ const optimization = () => {
     splitChunks: {
       chunks: 'all'
     },
-  minimizer: [
-    new CssMinimizerWebpackPlugin(),
-    new TerserWebpackPlugin()]
+    minimizer: [new CssMinimizerWebpackPlugin(), new TerserWebpackPlugin()]
   }
 
   if (IS_PROD) {
@@ -28,7 +26,7 @@ const optimization = () => {
   return config
 }
 
-const filename = ext => (IS_DEV ? `[name].${ext}` : `[name].[hash].${ext}`)
+const filename = (ext) => (IS_DEV ? `[name].${ext}` : `[name].[hash].${ext}`)
 
 const cssLoaders = (extra) => {
   const loaders = [
@@ -47,23 +45,24 @@ const cssLoaders = (extra) => {
 
 const jsLoaders = (extra) => {
   const loaders = {
-
     loader: 'babel-loader',
     options: {
       presets: ['@babel/preset-env']
     }
   }
+
   if (extra) {
     loaders.options.presets.push(extra)
   }
+
   return loaders
 }
 
 const pluginsSet = () => {
   const plugins = [
     new HtmlWebpackPlugin({
-    template: './index.html'
-  }),
+      template: './index.html'
+    }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
@@ -76,7 +75,7 @@ const pluginsSet = () => {
     new MiniCssExtractPlugin({
       filename: filename('css')
     }),
-    new EslintWebpackPlugin ({
+    new EslintWebpackPlugin({
       extensions: ['js'],
       fix: true
     })
@@ -94,8 +93,8 @@ module.exports = {
   },
   target: 'web',
   output: {
-    filename: filename('js'),
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    filename: filename('js')
   },
   resolve: {
     extensions: ['.js', '.json', '.png', '.ts', '.jsx'],
@@ -106,7 +105,7 @@ module.exports = {
       '@css': path.resolve(__dirname, 'src', 'css'),
       '@less': path.resolve(__dirname, 'src', 'less'),
       '@sass': path.resolve(__dirname, 'src', 'sass'),
-      '@assets': path.resolve(__dirname, 'src', 'assets'),
+      '@assets': path.resolve(__dirname, 'src', 'assets')
     }
   },
   optimization: optimization(),
@@ -114,11 +113,8 @@ module.exports = {
     port: 4200,
     hot: false
   },
-
   devtool: IS_DEV ? 'source-map' : false,
   plugins: pluginsSet(),
-
-
   module: {
     rules: [
       {
